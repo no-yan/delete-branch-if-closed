@@ -9,6 +9,7 @@ jobs:
     if: github.event.pull_request.merged == false
     steps:
       - uses: actions/checkout@v3
+      - run:  git branch -a
       - name: delete unmerged branch
         run: |
             git push origin --delete remote/origin/"${{ github.head_ref }}"
