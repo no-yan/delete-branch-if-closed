@@ -1,8 +1,6 @@
 name: "ブランチ削除"
 on:
   pull_request:
-    branches-ignore:
-        main
     types:
       - closed
 jobs:
