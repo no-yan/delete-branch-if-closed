@@ -12,4 +12,6 @@ jobs:
       - run:  git branch -a
       - name: delete unmerged branch
         run: |
-            git push origin --delete remote/origin/"${{ github.ref }}"
+            # https://github.com/actions/checkout/issues/58#issuecomment-545446510
+            pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
+            git push origin --delete remotes/pull/"${pull_number}"/merge
