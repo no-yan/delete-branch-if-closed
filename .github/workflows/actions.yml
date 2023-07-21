@@ -10,6 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run:  git branch -a
+      - run:  git branch --contains
       - name: delete unmerged branch
         run: |
             # https://github.com/actions/checkout/issues/58#issuecomment-545446510
