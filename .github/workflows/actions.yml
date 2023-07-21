@@ -1,0 +1,13 @@
+name: "ブランチ削除"
+on:
+  pull_request:
+    types:
+      - closed
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == false
+    steps:
+      - name: one-step
+        run: |
+          git push origin --delete remoteBranchName
