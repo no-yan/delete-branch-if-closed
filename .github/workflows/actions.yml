@@ -12,4 +12,4 @@ jobs:
       - run:  git branch -a
       - name: delete unmerged branch
         run: |
-            git push origin --delete remote/origin/"${{ github.head_ref }}"
+            git push origin --delete remote/origin/"${{ github.ref }}"
