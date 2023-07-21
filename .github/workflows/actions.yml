@@ -3,16 +3,14 @@ on:
   pull_request:
     types:
       - closed
-  push:
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == false
     steps:
       - uses: actions/checkout@v3
       - run:  git branch -a
       - run:  git branch --contains
       - name: delete unmerged branch
         run: |
-            # https://github.com/actions/checkout/issues/58#issuecomment-545446510
-            pull_number=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
-            git push origin --delete remotes/pull/"${pull_number}"/merge
+            git push origin --delete "${{ github.head_ref }}"
